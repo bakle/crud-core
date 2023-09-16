@@ -5,13 +5,13 @@ namespace Bakle\LskCore\Exceptions;
 use Exception;
 use Throwable;
 
-class ExtraEntityException extends Exception
+class EntityTypeException extends Exception
 {
 
     public function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
-        $this->setMessage(trans('One of extra entities does not extend from BaseEntity'));
+        $this->setMessage(trans('One of the entities does not extend from BaseEntity'));
     }
 
     public function setMessage($message): void

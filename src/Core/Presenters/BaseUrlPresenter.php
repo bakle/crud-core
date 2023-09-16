@@ -12,12 +12,13 @@ abstract class BaseUrlPresenter
 
     protected string $routeName;
     private array $entitiesIds = [];
+    private array $entitiesIdsExceptLast = [];
 
     public function __construct(
         ...$entities
     ) {
         if ($entities) {
-            UrlPresenterValidator::validateExtraEntities($entities);
+            UrlPresenterValidator::validateEntities($entities);
             $this->setExtraEntitiesIds($entities);
         }
 
@@ -28,6 +29,10 @@ abstract class BaseUrlPresenter
 
     public function index(): string
     {
+        if (count($this->entitiesIds) > 1) {
+            return route($this->routeName . '.' . RouteMethods::INDEX->value, $this->entitiesIdsExceptLast);
+        }
+
         return route($this->routeName . '.' . RouteMethods::INDEX->value);
     }
 
@@ -51,7 +56,7 @@ abstract class BaseUrlPresenter
     public function create(): string
     {
         if (count($this->entitiesIds) > 1) {
-            return route($this->routeName . '.' . RouteMethods::CREATE->value, $this->entitiesIds);
+            return route($this->routeName . '.' . RouteMethods::CREATE->value, $this->entitiesIdsExceptLast);
         }
 
         return route($this->routeName . '.' . RouteMethods::CREATE->value);
@@ -60,7 +65,7 @@ abstract class BaseUrlPresenter
     public function store(): string
     {
         if (count($this->entitiesIds) > 1) {
-            return route($this->routeName . '.' . RouteMethods::STORE->value, $this->entitiesIds);
+            return route($this->routeName . '.' . RouteMethods::STORE->value, $this->entitiesIdsExceptLast);
         }
 
         return route($this->routeName . '.' . RouteMethods::STORE->value);
@@ -75,5 +80,6 @@ abstract class BaseUrlPresenter
     private function setExtraEntitiesIds(array $entities): void
     {
         $this->entitiesIds = Arr::map($entities, fn(BaseEntity $entity) => $entity->getId());
+        $this->entitiesIdsExceptLast = array_slice($this->entitiesIds, 0, -1);
     }
 }
