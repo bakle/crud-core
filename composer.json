@@ -1,11 +1,11 @@
 {
-  "name": "bashir/lsk-core",
+  "name": "bakle/lsk-core",
   "description": "Laravel Starter Kit Core Files",
   "type": "library",
   "license": "MIT",
   "require": {
     "php": "^8.2",
-    "laravel/framework": "^10.10"
+    "laravel/framework": "^10.0"
   },
   "autoload": {
     "psr-4": {
