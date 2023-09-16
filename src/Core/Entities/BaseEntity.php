@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseEntity
 {
-    public function __construct(protected readonly Model $model, public readonly ?Model $secondaryModel = null)
+    protected array $models;
+
+    public function __construct(protected readonly Model $model, ...$models)
     {
+        $this->models = $models;
     }
 
     abstract public function url(): ?BaseUrlPresenter;
@@ -26,7 +29,7 @@ abstract class BaseEntity
         });
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->model->getKey();
     }

@@ -16,7 +16,7 @@ readonly class Form
         return $this->url;
     }
 
-    public function type(): string
+    public function getType(): string
     {
         return $this->type->value;
     }

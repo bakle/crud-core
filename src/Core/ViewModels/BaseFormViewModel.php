@@ -2,29 +2,21 @@
 
 namespace Bakle\LskCore\Core\ViewModels;
 
-use Bakle\LskCore\Core\Enums\FormTypes;
 use Bakle\LskCore\Core\Entities\BaseEntity;
+use Bakle\LskCore\Core\Enums\FormTypes;
 use Bakle\LskCore\Core\Forms\Form;
 use Illuminate\Database\Eloquent\Model;
 use ReflectionClass;
 
 abstract class BaseFormViewModel
 {
-    protected FormTypes $formType;
+    protected array $models;
 
     abstract protected function getEntityClass(): string;
 
-    abstract protected function getForm(): Form;
-
-    public function __construct(protected readonly Model $model, protected readonly ?Model $secondaryModel = null)
+    public function __construct(protected readonly FormTypes $formType, protected readonly Model $model, ...$models)
     {
-    }
-
-    public function setFormType(FormTypes $formType): self
-    {
-        $this->formType = $formType;
-
-        return $this;
+        $this->models = $models;
     }
 
     public function build(): array
@@ -38,6 +30,11 @@ abstract class BaseFormViewModel
     }
 
 
+    public function getForm(): Form
+    {
+        return new Form($this->resolveFormUrl(), $this->formType);
+    }
+
     protected function getExtraAttributes(): array
     {
         return [];
@@ -47,7 +44,7 @@ abstract class BaseFormViewModel
     {
         $class = new ReflectionClass($this->getEntityClass());
 
-        return $class->newInstance($this->model, $this->secondaryModel);
+        return $class->newInstance($this->model, $this->models);
     }
 
     protected function resolveFormUrl(): string

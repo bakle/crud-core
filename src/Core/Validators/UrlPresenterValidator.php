@@ -3,16 +3,16 @@
 namespace Bakle\LskCore\Core\Validators;
 
 use Bakle\LskCore\Core\Entities\BaseEntity;
-use Bakle\LskCore\Exceptions\ExtraEntityException;
+use Bakle\LskCore\Exceptions\EntityTypeException;
 
 class UrlPresenterValidator
 {
 
-    public static function validateExtraEntities(array $extraEntities): void
+    public static function validateEntities(array $extraEntities): void
     {
         foreach ($extraEntities as $entity) {
             if (!$entity instanceof BaseEntity) {
-                throw new ExtraEntityException();
+                throw new EntityTypeException();
             }
         }
     }
