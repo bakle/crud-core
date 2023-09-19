@@ -7,8 +7,8 @@ use Bakle\LskCore\Core\Presenters\BaseUrlPresenter;
 class UserUrlPresenter extends BaseUrlPresenter
 {
 
-    function setRouteName(): void
+    function getRouteName(): string
     {
-        $this->routeName = 'users';
+        return 'users';
     }
 }

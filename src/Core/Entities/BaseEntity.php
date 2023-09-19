@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseEntity
 {
-    protected array $models;
+    protected array $extraModels;
 
-    public function __construct(protected readonly Model $model, ...$models)
+    public function __construct(protected readonly Model $model, ...$extraModels)
     {
-        $this->models = $models;
+        $this->extraModels = $extraModels;
     }
 
     abstract public function url(): ?BaseUrlPresenter;
@@ -37,6 +37,11 @@ abstract class BaseEntity
     public function getCreatedAtDayDateFormat(): string
     {
         return $this->model->created_at->toFormattedDayDateString();
+    }
+
+    protected function hasExtraModels(): bool
+    {
+        return count($this->extraModels) > 0;
     }
 
 }
