@@ -16,4 +16,5 @@ class UserIndexViewModel extends BaseIndexViewModel
     {
         return UserEntity::class;
     }
+
 }

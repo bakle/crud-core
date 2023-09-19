@@ -7,8 +7,8 @@ use Bakle\LskCore\Core\Presenters\BaseUrlPresenter;
 class UserPostCommentUrlPresenter extends BaseUrlPresenter
 {
 
-    function setRouteName(): void
+    function getRouteName(): string
     {
-        $this->routeName = 'users.posts.comments';
+        return 'users.posts.comments';
     }
 }

@@ -9,9 +9,8 @@ use Illuminate\Support\Arr;
 
 abstract class BaseUrlPresenter
 {
-
-    protected string $routeName;
     private array $entitiesIds = [];
+    protected array $entities = [];
     private array $entitiesIdsExceptLast = [];
 
     public function __construct(
@@ -22,59 +21,68 @@ abstract class BaseUrlPresenter
             $this->setExtraEntitiesIds($entities);
         }
 
-        $this->setRouteName();
+        $this->entities = $entities;
+
     }
 
-    abstract function setRouteName(): void;
+    abstract protected function getRouteName(): string;
 
     public function index(): string
     {
         if (count($this->entitiesIds) > 1) {
-            return route($this->routeName . '.' . RouteMethods::INDEX->value, $this->entitiesIdsExceptLast);
+            return route($this->getRouteName() . '.' . RouteMethods::INDEX->value, $this->entitiesIdsExceptLast);
         }
 
-        return route($this->routeName . '.' . RouteMethods::INDEX->value);
+        return route($this->getRouteName() . '.' . RouteMethods::INDEX->value);
     }
 
     public function show(): string
     {
-        return route($this->routeName . '.' . RouteMethods::SHOW->value, $this->entitiesIds);
+        return route($this->getRouteName() . '.' . RouteMethods::SHOW->value, $this->entitiesIds);
     }
 
     public function edit(): string
     {
-        return route($this->routeName . '.' . RouteMethods::EDIT->value, $this->entitiesIds
+        return route(
+            $this->getRouteName() . '.' . RouteMethods::EDIT->value, $this->entitiesIds
         );
     }
 
     public function update(): string
     {
-        return route($this->routeName . '.' . RouteMethods::UPDATE->value, $this->entitiesIds
+        return route(
+            $this->getRouteName() . '.' . RouteMethods::UPDATE->value, $this->entitiesIds
         );
     }
 
     public function create(): string
     {
         if (count($this->entitiesIds) > 1) {
-            return route($this->routeName . '.' . RouteMethods::CREATE->value, $this->entitiesIdsExceptLast);
+            return route($this->getRouteName() . '.' . RouteMethods::CREATE->value, $this->entitiesIdsExceptLast);
         }
 
-        return route($this->routeName . '.' . RouteMethods::CREATE->value);
+        return route($this->getRouteName() . '.' . RouteMethods::CREATE->value);
     }
 
     public function store(): string
     {
         if (count($this->entitiesIds) > 1) {
-            return route($this->routeName . '.' . RouteMethods::STORE->value, $this->entitiesIdsExceptLast);
+            return route($this->getRouteName() . '.' . RouteMethods::STORE->value, $this->entitiesIdsExceptLast);
         }
 
-        return route($this->routeName . '.' . RouteMethods::STORE->value);
+        return route($this->getRouteName() . '.' . RouteMethods::STORE->value);
     }
 
     public function destroy(): string
     {
-        return route($this->routeName . '.' . RouteMethods::DESTROY->value, $this->entitiesIds
+        return route(
+            $this->getRouteName() . '.' . RouteMethods::DESTROY->value, $this->entitiesIds
         );
+    }
+
+    protected function hasEntities(): bool
+    {
+        return count($this->entities) > 0;
     }
 
     private function setExtraEntitiesIds(array $entities): void

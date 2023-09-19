@@ -44,7 +44,7 @@ abstract class BaseFormViewModel
     {
         $class = new ReflectionClass($this->getEntityClass());
 
-        return $class->newInstance($this->model, $this->models);
+        return $class->newInstance($this->model, ...$this->models);
     }
 
     protected function resolveFormUrl(): string
