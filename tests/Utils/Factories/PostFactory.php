@@ -14,6 +14,7 @@ class PostFactory extends Factory
         return [
             'id' => $this->faker->randomDigit(),
             'title' => $this->faker->word(),
+            'slug' => $this->faker->slug(),
             'body' => $this->faker->words(asText: true),
         ];
     }

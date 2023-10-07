@@ -11,6 +11,6 @@ class UserEntity extends BaseEntity
 
     public function url(): ?BaseUrlPresenter
     {
-        return new UserUrlPresenter($this);
+        return new UserUrlPresenter($this->model);
     }
 }
