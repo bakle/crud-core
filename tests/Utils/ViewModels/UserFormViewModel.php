@@ -14,7 +14,7 @@ class UserFormViewModel extends BaseFormViewModel
         return UserEntity::class;
     }
 
-    protected function getExtraAttributes(): array
+    protected function getExtraData(): array
     {
         return [
             'post' => new Post()
