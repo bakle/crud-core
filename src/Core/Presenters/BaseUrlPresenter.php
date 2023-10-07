@@ -2,26 +2,26 @@
 
 namespace Bakle\LskCore\Core\Presenters;
 
-use Bakle\LskCore\Core\Entities\BaseEntity;
 use Bakle\LskCore\Core\Enums\RouteMethods;
 use Bakle\LskCore\Core\Validators\UrlPresenterValidator;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 abstract class BaseUrlPresenter
 {
-    private array $entitiesIds = [];
-    protected array $entities = [];
-    private array $entitiesIdsExceptLast = [];
+    private array $modelsRouteKey = [];
+    protected array $models = [];
+    private array $modelsRouteKeyExceptLast = [];
 
     public function __construct(
-        ...$entities
+        ...$models
     ) {
-        if ($entities) {
-            UrlPresenterValidator::validateEntities($entities);
-            $this->setExtraEntitiesIds($entities);
+        if ($models) {
+            UrlPresenterValidator::validateModels($models);
+            $this->setExtraEntitiesIds($models);
         }
 
-        $this->entities = $entities;
+        $this->models = $models;
 
     }
 
@@ -29,8 +29,8 @@ abstract class BaseUrlPresenter
 
     public function index(): string
     {
-        if (count($this->entitiesIds) > 1) {
-            return route($this->getRouteName() . '.' . RouteMethods::INDEX->value, $this->entitiesIdsExceptLast);
+        if (count($this->modelsRouteKey) > 1) {
+            return route($this->getRouteName() . '.' . RouteMethods::INDEX->value, $this->modelsRouteKeyExceptLast);
         }
 
         return route($this->getRouteName() . '.' . RouteMethods::INDEX->value);
@@ -38,27 +38,27 @@ abstract class BaseUrlPresenter
 
     public function show(): string
     {
-        return route($this->getRouteName() . '.' . RouteMethods::SHOW->value, $this->entitiesIds);
+        return route($this->getRouteName() . '.' . RouteMethods::SHOW->value, $this->modelsRouteKey);
     }
 
     public function edit(): string
     {
         return route(
-            $this->getRouteName() . '.' . RouteMethods::EDIT->value, $this->entitiesIds
+            $this->getRouteName() . '.' . RouteMethods::EDIT->value, $this->modelsRouteKey
         );
     }
 
     public function update(): string
     {
         return route(
-            $this->getRouteName() . '.' . RouteMethods::UPDATE->value, $this->entitiesIds
+            $this->getRouteName() . '.' . RouteMethods::UPDATE->value, $this->modelsRouteKey
         );
     }
 
     public function create(): string
     {
-        if (count($this->entitiesIds) > 1) {
-            return route($this->getRouteName() . '.' . RouteMethods::CREATE->value, $this->entitiesIdsExceptLast);
+        if (count($this->modelsRouteKey) > 1) {
+            return route($this->getRouteName() . '.' . RouteMethods::CREATE->value, $this->modelsRouteKeyExceptLast);
         }
 
         return route($this->getRouteName() . '.' . RouteMethods::CREATE->value);
@@ -66,8 +66,8 @@ abstract class BaseUrlPresenter
 
     public function store(): string
     {
-        if (count($this->entitiesIds) > 1) {
-            return route($this->getRouteName() . '.' . RouteMethods::STORE->value, $this->entitiesIdsExceptLast);
+        if (count($this->modelsRouteKey) > 1) {
+            return route($this->getRouteName() . '.' . RouteMethods::STORE->value, $this->modelsRouteKeyExceptLast);
         }
 
         return route($this->getRouteName() . '.' . RouteMethods::STORE->value);
@@ -76,18 +76,18 @@ abstract class BaseUrlPresenter
     public function destroy(): string
     {
         return route(
-            $this->getRouteName() . '.' . RouteMethods::DESTROY->value, $this->entitiesIds
+            $this->getRouteName() . '.' . RouteMethods::DESTROY->value, $this->modelsRouteKey
         );
     }
 
     protected function hasEntities(): bool
     {
-        return count($this->entities) > 0;
+        return count($this->models) > 0;
     }
 
-    private function setExtraEntitiesIds(array $entities): void
+    private function setExtraEntitiesIds(array $models): void
     {
-        $this->entitiesIds = Arr::map($entities, fn(BaseEntity $entity) => $entity->getId());
-        $this->entitiesIdsExceptLast = array_slice($this->entitiesIds, 0, -1);
+        $this->modelsRouteKey = Arr::map($models, fn(Model $models) => $models->getRouteKey());
+        $this->modelsRouteKeyExceptLast = array_slice($this->modelsRouteKey, 0, -1);
     }
 }
