@@ -24,11 +24,11 @@ class UserIndexViewModelIntegrationTest extends BaseTestCase
         $userIndexViewModel = new UserIndexViewModel($userQuery, new Request());
         $data = $userIndexViewModel->build();
 
-        $this->assertCount(3, $data['items']);
+        $this->assertCount(3, $data['entities']);
         $this->assertInstanceOf(Htmlable::class, $data['pagination']);
         $this->assertEquals(trans('Users'), $data['title']);
 
-        $data['items']->each(function ($item) use ($user) {
+        $data['entities']->each(function ($item) use ($user) {
             $this->assertInstanceOf(UserEntity::class, $item);
             $this->assertContains($item->getId(), $user->pluck('id'));
         });
