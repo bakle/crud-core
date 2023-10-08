@@ -3,7 +3,7 @@
 namespace Tests\Integration;
 
 
-use Bakle\LskCore\Exceptions\EntityTypeException;
+use Bakle\LskCore\Exceptions\ModelTypeException;
 use Tests\BaseTestCase;
 use Tests\Utils\Entities\UserEntity;
 use Tests\Utils\Factories\CommentFactory;
@@ -18,8 +18,7 @@ class UrlPresenterIntegrationTest extends BaseTestCase
     {
         $user = UserFactory::new()->make();
 
-        $userEntity = new UserEntity($user);
-        $urlPresenter = new UserUrlPresenter($userEntity);
+        $urlPresenter = new UserUrlPresenter($user);
 
         $this->assertEquals($urlPresenter->index(), route('users.index'));
         $this->assertEquals($urlPresenter->show(), route('users.show', $user->id));
@@ -32,14 +31,11 @@ class UrlPresenterIntegrationTest extends BaseTestCase
 
     public function testItReturnsResolvedUrlsForMoreThanOneParam(): void
     {
-        $user = UserFactory::new()->make();
-        $post = PostFactory::new()->make();
+        $user = UserFactory::new()->create();
+        $post = PostFactory::new()->create();
         $comment = CommentFactory::new()->make();
 
-        $userEntity = new UserEntity($user);
-        $postEntity = new UserEntity($post);
-        $commentEntity = new UserEntity($comment);
-        $urlPresenter = new UserPostCommentUrlPresenter($userEntity, $postEntity, $commentEntity);
+        $urlPresenter = new UserPostCommentUrlPresenter($user, $post, $comment);
 
         $this->assertEquals($urlPresenter->index(), route('users.posts.comments.index', [$user, $post]));
         $this->assertEquals($urlPresenter->show(), route('users.posts.comments.show', [$user, $post, $comment]));
@@ -50,17 +46,24 @@ class UrlPresenterIntegrationTest extends BaseTestCase
         $this->assertEquals($urlPresenter->destroy(), route('users.posts.comments.destroy', [$user, $post, $comment]));
     }
 
+    public function testItUsesRouteKeyValue(): void
+    {
+        $user = UserFactory::new()->create();
+        $post = PostFactory::new()->create();
+        $comment = CommentFactory::new()->make();
+
+        $urlPresenter = new UserPostCommentUrlPresenter($user, $post, $comment);
+
+        $this->assertStringContainsString("users/$user->id/posts/$post->slug", $urlPresenter->index());
+    }
+
     public function testItShoudThrowAndExceptionIfOneOfPassedEntitiesAreTheWrongType(): void
     {
         $user = UserFactory::new()->make();
-        $post = PostFactory::new()->make();
         $comment = CommentFactory::new()->make();
 
-        $userEntity = new UserEntity($user);
-        $commentEntity = new UserEntity($comment);
-
-        $this->expectException(EntityTypeException::class);
-        new UserPostCommentUrlPresenter($userEntity, $post, $commentEntity);
+        $this->expectException(ModelTypeException::class);
+        new UserPostCommentUrlPresenter($user, [], $comment);
     }
 
 }

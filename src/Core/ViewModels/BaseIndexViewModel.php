@@ -32,7 +32,7 @@ abstract class BaseIndexViewModel
     public function build(): array
     {
         return [
-            'items' => $this->getEntities(),
+            'entities' => $this->getEntities(),
             'pagination' => $this->getPaginationLink(),
             'title' => $this->getTitle(),
             ...$this->getExtraData(),

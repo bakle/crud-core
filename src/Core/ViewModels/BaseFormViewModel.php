@@ -25,7 +25,7 @@ abstract class BaseFormViewModel
             'entity' => $this->getEntity(),
             'form' => $this->getForm(),
             'title' => $this->getTitle(),
-            ...$this->getExtraAttributes()
+            ...$this->getExtraData()
         ];
     }
 
@@ -35,7 +35,7 @@ abstract class BaseFormViewModel
         return new Form($this->resolveFormUrl(), $this->formType);
     }
 
-    protected function getExtraAttributes(): array
+    protected function getExtraData(): array
     {
         return [];
     }
