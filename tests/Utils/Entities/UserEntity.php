@@ -8,7 +8,6 @@ use Tests\Utils\Presenters\UserUrlPresenter;
 
 class UserEntity extends BaseEntity
 {
-
     public function url(): ?BaseUrlPresenter
     {
         return new UserUrlPresenter($this->model);
