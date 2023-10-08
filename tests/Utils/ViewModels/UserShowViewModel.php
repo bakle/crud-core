@@ -23,5 +23,4 @@ class UserShowViewModel extends BaseShowViewModel
             'title' => $this->getTitle()
         ];
     }
-
 }
