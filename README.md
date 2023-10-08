@@ -2,6 +2,14 @@
 
 This package contains base files that contains all boilerplate logic for creating a crud.
 
+## Installation
+
+```shell
+composer require bakle/crud-core
+```
+
+## What's inside this package?
+
 ## UrlPresenter
 The url presenter encapsulate the routes that are generated in `Route::resource('users, UserController::class)`
 
