@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Bakle\LskCore\Core\ViewModels;
+namespace Bakle\CrudCore\Core\ViewModels;
 
-use Bakle\LskCore\Core\Searchables\BaseSearchable;
-use Bakle\LskCore\Core\Sortables\BaseSortable;
+use Bakle\CrudCore\Core\Searchables\BaseSearchable;
+use Bakle\CrudCore\Core\Sortables\BaseSortable;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Bakle\LskCore\Core\Searchables;
+namespace Bakle\CrudCore\Core\Searchables;
 
 use Illuminate\Database\Eloquent\Builder;
 

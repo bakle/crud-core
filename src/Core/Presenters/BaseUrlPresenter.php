@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Bakle\LskCore\Core\Presenters;
+namespace Bakle\CrudCore\Core\Presenters;
 
-use Bakle\LskCore\Core\Enums\RouteMethods;
-use Bakle\LskCore\Core\Validators\UrlPresenterValidator;
+use Bakle\CrudCore\Core\Enums\RouteMethods;
+use Bakle\CrudCore\Core\Validators\UrlPresenterValidator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 

@@ -2,7 +2,7 @@
 
 namespace Tests\Utils\ViewModels;
 
-use Bakle\LskCore\Core\ViewModels\BaseIndexViewModel;
+use Bakle\CrudCore\Core\ViewModels\BaseIndexViewModel;
 use Tests\Utils\Entities\UserEntity;
 
 class UserIndexViewModel extends BaseIndexViewModel
