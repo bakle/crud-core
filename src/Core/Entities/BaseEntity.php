@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Bakle\LskCore\Core\Entities;
+namespace Bakle\CrudCore\Core\Entities;
 
-use Bakle\LskCore\Core\Presenters\BaseUrlPresenter;
+use Bakle\CrudCore\Core\Presenters\BaseUrlPresenter;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 

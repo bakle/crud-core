@@ -2,7 +2,7 @@
 
 namespace Tests\Utils\ViewModels;
 
-use Bakle\LskCore\Core\ViewModels\BaseShowViewModel;
+use Bakle\CrudCore\Core\ViewModels\BaseShowViewModel;
 use Tests\Utils\Entities\UserEntity;
 
 class UserShowViewModel extends BaseShowViewModel

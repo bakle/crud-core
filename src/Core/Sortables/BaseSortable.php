@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Bakle\LskCore\Core\Sortables;
+namespace Bakle\CrudCore\Core\Sortables;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;

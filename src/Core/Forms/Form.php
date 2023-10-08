@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Bakle\LskCore\Core\Forms;
+namespace Bakle\CrudCore\Core\Forms;
 
-use Bakle\LskCore\Core\Enums\FormMethods;
-use Bakle\LskCore\Core\Enums\FormTypes;
+use Bakle\CrudCore\Core\Enums\FormMethods;
+use Bakle\CrudCore\Core\Enums\FormTypes;
 
 readonly class Form
 {

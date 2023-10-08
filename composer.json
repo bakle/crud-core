@@ -1,6 +1,6 @@
 {
-  "name": "bakle/lsk-core",
-  "description": "Laravel Starter Kit Core Files",
+  "name": "bakle/crud-core",
+  "description": "Laravel Crud core files",
   "type": "library",
   "license": "MIT",
   "require": {
@@ -9,7 +9,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Bakle\\LskCore\\": "src/"
+      "Bakle\\CrudCore\\": "src/"
     }
   },
   "autoload-dev": {

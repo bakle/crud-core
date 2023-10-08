@@ -2,7 +2,7 @@
 
 namespace Tests\Utils\ViewModels;
 
-use Bakle\LskCore\Core\ViewModels\BaseFormViewModel;
+use Bakle\CrudCore\Core\ViewModels\BaseFormViewModel;
 use Tests\Utils\Entities\UserEntity;
 use Tests\Utils\Models\Post;
 

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Bakle\LskCore\Core\ViewModels;
+namespace Bakle\CrudCore\Core\ViewModels;
 
-use Bakle\LskCore\Core\Entities\BaseEntity;
-use Bakle\LskCore\Core\Enums\FormTypes;
-use Bakle\LskCore\Core\Forms\Form;
+use Bakle\CrudCore\Core\Entities\BaseEntity;
+use Bakle\CrudCore\Core\Enums\FormTypes;
+use Bakle\CrudCore\Core\Forms\Form;
 use Illuminate\Database\Eloquent\Model;
 use ReflectionClass;
 
