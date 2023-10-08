@@ -3,9 +3,9 @@
 namespace Tests\Integration;
 
 
-use Bakle\LskCore\Core\Enums\FormMethods;
-use Bakle\LskCore\Core\Enums\FormTypes;
-use Bakle\LskCore\Core\Forms\Form;
+use Bakle\CrudCore\Core\Enums\FormMethods;
+use Bakle\CrudCore\Core\Enums\FormTypes;
+use Bakle\CrudCore\Core\Forms\Form;
 use Tests\BaseTestCase;
 use Tests\Utils\Entities\UserEntity;
 use Tests\Utils\Factories\UserFactory;

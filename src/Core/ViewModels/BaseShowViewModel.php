@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Bakle\LskCore\Core\ViewModels;
+namespace Bakle\CrudCore\Core\ViewModels;
 
 
-use Bakle\LskCore\Core\Entities\BaseEntity;
+use Bakle\CrudCore\Core\Entities\BaseEntity;
 use Illuminate\Database\Eloquent\Model;
 use ReflectionClass;
 

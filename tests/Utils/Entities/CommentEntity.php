@@ -2,8 +2,8 @@
 
 namespace Tests\Utils\Entities;
 
-use Bakle\LskCore\Core\Entities\BaseEntity;
-use Bakle\LskCore\Core\Presenters\BaseUrlPresenter;
+use Bakle\CrudCore\Core\Entities\BaseEntity;
+use Bakle\CrudCore\Core\Presenters\BaseUrlPresenter;
 
 class CommentEntity extends BaseEntity
 {

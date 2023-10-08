@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Bakle\LskCore\Core\Models\Traits;
+namespace Bakle\CrudCore\Core\Models\Traits;
 
-use Bakle\LskCore\Core\Searchables\BaseSearchable;
+use Bakle\CrudCore\Core\Searchables\BaseSearchable;
 use Illuminate\Database\Eloquent\Builder;
 
 trait HasSearchable

@@ -2,7 +2,7 @@
 
 namespace Tests\Utils\Presenters;
 
-use Bakle\LskCore\Core\Presenters\BaseUrlPresenter;
+use Bakle\CrudCore\Core\Presenters\BaseUrlPresenter;
 
 class UserUrlPresenter extends BaseUrlPresenter
 {

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Bakle\LskCore\Exceptions;
+namespace Bakle\CrudCore\Exceptions;
 
 use Exception;
 use Throwable;

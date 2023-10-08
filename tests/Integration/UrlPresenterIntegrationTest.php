@@ -3,7 +3,7 @@
 namespace Tests\Integration;
 
 
-use Bakle\LskCore\Exceptions\ModelTypeException;
+use Bakle\CrudCore\Exceptions\ModelTypeException;
 use Tests\BaseTestCase;
 use Tests\Utils\Entities\UserEntity;
 use Tests\Utils\Factories\CommentFactory;
