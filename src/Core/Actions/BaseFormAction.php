@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Bakle\CrudCore\Core\UseCases;
+namespace Bakle\CrudCore\Core\Actions;
 
 use Illuminate\Database\Eloquent\Model;
 
