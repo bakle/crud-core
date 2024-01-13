@@ -9,9 +9,9 @@ use Illuminate\Support\Arr;
 
 abstract class BaseUrlPresenter
 {
-    private array $modelsRouteKey = [];
+    protected array $modelsRouteKey = [];
     protected array $models = [];
-    private array $modelsRouteKeyExceptLast = [];
+    protected array $modelsRouteKeyExceptLast = [];
 
     public function __construct(
         ...$models
