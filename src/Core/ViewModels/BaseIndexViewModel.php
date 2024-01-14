@@ -12,7 +12,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use ReflectionClass;
 
-abstract class BaseIndexViewModel
+abstract class BaseIndexViewModel extends BaseViewModel
 {
     protected LengthAwarePaginator $models;
     protected array $extraModels;
