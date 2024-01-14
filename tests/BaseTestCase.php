@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Illuminate\Config\Repository;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase;
 use Tests\Utils\Http\Controllers\UserController;
 use Tests\Utils\Http\Controllers\UserPostCommentController;
@@ -10,6 +11,8 @@ use function Orchestra\Testbench\workbench_path;
 
 class BaseTestCase extends TestCase
 {
+    use RefreshDatabase;
+
     protected function defineEnvironment($app): void
     {
         tap($app['config'], function (Repository $config) {
@@ -28,8 +31,13 @@ class BaseTestCase extends TestCase
         $router->resource('users.posts.comments', UserPostCommentController::class);
     }
 
-    protected function defineDatabaseMigrations()
+    protected function defineDatabaseMigrations(): void
     {
         $this->loadMigrationsFrom(__DIR__ . '/Utils/Database/Migrations');
+    }
+
+    protected function defineViews(): void
+    {
+        $this->app['view']->addLocation(__DIR__.'/Utils/Resources/Views');
     }
 }
