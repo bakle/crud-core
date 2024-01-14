@@ -7,7 +7,7 @@ use Bakle\CrudCore\Core\Entities\BaseEntity;
 use Illuminate\Database\Eloquent\Model;
 use ReflectionClass;
 
-abstract class BaseShowViewModel
+abstract class BaseShowViewModel extends BaseViewModel
 {
     protected array $extraModels = [];
 

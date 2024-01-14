@@ -8,7 +8,7 @@ use Bakle\CrudCore\Core\Forms\Form;
 use Illuminate\Database\Eloquent\Model;
 use ReflectionClass;
 
-abstract class BaseFormViewModel
+abstract class BaseFormViewModel extends BaseViewModel
 {
     protected array $models;
 
